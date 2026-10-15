@@ -12,7 +12,7 @@ use Illuminate\Validation\Rule;
 class StoreCourierRequest extends FormRequest
 {
     /**
-     * Determine if the user is authorized to make this request.
+     * Cek apakah user boleh ngirim request ini.
      */
     public function authorize(): bool
     {
@@ -20,7 +20,7 @@ class StoreCourierRequest extends FormRequest
     }
 
     /**
-     * Get the validation rules that apply to the request.
+     * Aturan validasi yang dipake buat request ini.
      *
      * @return array<string, ValidationRule|array<mixed>|string>
      */
@@ -42,7 +42,7 @@ class StoreCourierRequest extends FormRequest
     }
 
     /**
-     * Custom validation messages.
+     * Pesan error validasi yang dibuat custom.
      *
      * @return array<string, string>
      */
@@ -65,7 +65,7 @@ class StoreCourierRequest extends FormRequest
     }
 
     /**
-     * Custom attribute names.
+     * Nama kolom yang ditampilin di pesan error (biar enak dibaca).
      *
      * @return array<string, string>
      */

@@ -8,14 +8,14 @@ use Illuminate\Database\Seeder;
 class CourierSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * Isi database pakai data contoh.
      *
-     * Creates a small deterministic dataset that is useful for manually
-     * exercising the search, level filter and sorting behaviour.
+     * Bikin sedikit data tetap yang enak buat nyoba sendiri fitur cari,
+     * filter level, dan urutan (sorting).
      */
     public function run(): void
     {
-        // A record specifically designed to exercise the "budi agung" search.
+        // Satu baris yang sengaja dibikin buat ngetes pencarian "budi agung".
         Courier::factory()->create([
             'name' => 'Budiono Hadi Agung',
             'email' => 'budiono.agung@example.com',

@@ -14,7 +14,7 @@ class CourierModelTest extends TestCase
     use RefreshDatabase;
 
     /**
-     * The level boundary constants must match the 1-5 requirement.
+     * Konstanta batas level harusnya cocok sama aturan 1-5.
      */
     public function test_level_boundary_constants_are_correct(): void
     {
@@ -23,8 +23,8 @@ class CourierModelTest extends TestCase
     }
 
     /**
-     * The attributes defined in $fillable must be exactly the master-data
-     * columns that the API is allowed to mass-assign.
+     * Kolom yang ada di $fillable harusnya persis kolom master data yang
+     * boleh diisi bareng-bareng (mass assignment) lewat API.
      */
     public function test_fillable_contains_the_expected_columns(): void
     {
@@ -46,7 +46,7 @@ class CourierModelTest extends TestCase
     }
 
     /**
-     * Attributes must be cast to their native types automatically.
+     * Kolomnya harusnya diubah otomatis ke tipe aslinya (casting).
      */
     public function test_attributes_are_cast_to_native_types(): void
     {
@@ -64,7 +64,8 @@ class CourierModelTest extends TestCase
     }
 
     /**
-     * A freshly retrieved model must re-cast enum attributes correctly.
+     * Model yang baru diambil dari database harusnya tetap ke-cast bener
+     * buat kolom enum-nya.
      */
     public function test_enum_casts_survive_a_round_trip_from_the_database(): void
     {
@@ -80,7 +81,7 @@ class CourierModelTest extends TestCase
     }
 
     /**
-     * The ofLevels scope must restrict the query to the given levels only.
+     * Scope ofLevels harusnya cuma ngambil kurir yang level-nya sesuai daftar.
      */
     public function test_of_levels_scope_returns_only_matching_levels(): void
     {

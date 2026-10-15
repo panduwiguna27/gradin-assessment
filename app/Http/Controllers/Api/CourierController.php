@@ -15,8 +15,9 @@ use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 class CourierController extends Controller
 {
     /**
-     * Columns the API is allowed to sort by. Used to whitelist the "sort"
-     * query parameter so arbitrary column names can never reach the database.
+     * Daftar kolom yang boleh dipake buat ngurutin. Ini semacam "whitelist"
+     * biar parameter "sort" dari URL nggak bisa nyelipin nama kolom sembarang
+     * ke database (biar aman dari SQL injection lewat urutan).
      *
      * @var array<string, string>
      */
@@ -29,15 +30,15 @@ class CourierController extends Controller
     ];
 
     /**
-     * Display a listing of the couriers.
+     * Tampilin daftar kurir (dengan pagination).
      *
-     * Supported query parameters:
-     *  - search       : space separated tokens, every token must match the
-     *                   courier (e.g. "budi agung" matches "Budiono Hadi Agung").
-     *  - level        : comma separated list of levels (e.g. "2,3").
-     *  - sort         : column to sort by. Defaults to "name".
-     *  - direction    : "asc" | "desc". Defaults to "asc".
-     *  - per_page     : number of items per page. Defaults to 15.
+     * Parameter query yang didukung:
+     *  - search       : kata kunci dipisah spasi, tiap kata harus cocok sama
+     *                   kurir (contoh "budi agung" cocok ke "Budiono Hadi Agung").
+     *  - level        : daftar level dipisah koma (contoh "2,3").
+     *  - sort         : kolom buat ngurutin. Default-nya "name".
+     *  - direction    : "asc" | "desc". Default-nya "asc".
+     *  - per_page     : jumlah data per halaman. Default-nya 15.
      */
     public function index(Request $request): AnonymousResourceCollection
     {
@@ -53,7 +54,7 @@ class CourierController extends Controller
     }
 
     /**
-     * Store a newly created courier in storage.
+     * Simpan kurir baru ke database.
      */
     public function store(StoreCourierRequest $request): JsonResponse
     {
@@ -65,7 +66,7 @@ class CourierController extends Controller
     }
 
     /**
-     * Display the specified courier.
+     * Tampilin detail satu kurir.
      */
     public function show(Courier $courier): CourierResource
     {
@@ -73,7 +74,7 @@ class CourierController extends Controller
     }
 
     /**
-     * Update the specified courier in storage.
+     * Update data kurir yang udah ada di database.
      */
     public function update(UpdateCourierRequest $request, Courier $courier): CourierResource
     {
@@ -83,7 +84,7 @@ class CourierController extends Controller
     }
 
     /**
-     * Remove the specified courier from storage.
+     * Hapus kurir dari database.
      */
     public function destroy(Courier $courier): JsonResponse
     {
@@ -95,11 +96,11 @@ class CourierController extends Controller
     }
 
     /**
-     * Apply a tokenised, case-insensitive search to the query.
+     * Terapin pencarian berdasarkan kata (token), nggak peduli huruf besar/kecil.
      *
-     * Every whitespace separated token must be found in at least one of the
-     * searchable columns. Tokens are combined with AND, while the columns are
-     * combined with OR, so "budi agung" still matches "Budiono Hadi Agung".
+     * Tiap kata (dipisah spasi) harus ketemu di salah satu kolom yang dicari.
+     * Antarkata digabung pakai AND, antarkolom pakai OR, makanya "budi agung"
+     * tetap bisa cocok ke "Budiono Hadi Agung".
      */
     private function applySearch(Builder $query, string $search): void
     {
@@ -126,10 +127,10 @@ class CourierController extends Controller
     }
 
     /**
-     * Apply the "?level=2,3" filter to the query.
+     * Terapin filter level dari "?level=2,3".
      *
-     * Accepts a comma separated list of levels and keeps only the values that
-     * fall within the supported level range (1-5).
+     * Nerima daftar level dipisah koma, terus cuma ambil yang angkanya masuk
+     * rentang level yang didukung (1-5).
      */
     private function applyLevelFilter(Builder $query, string $levels): void
     {
@@ -146,10 +147,10 @@ class CourierController extends Controller
     }
 
     /**
-     * Resolve the sort column and direction from the request.
+     * Tentukan kolom & arah urutan dari request.
      *
-     * Falls back to sorting by name (ascending) when the requested column is
-     * missing or not whitelisted.
+     * Kalau kolomnya nggak diisi atau nggak ada di whitelist, otomatis balik
+     * lagi ngurutin pakai nama (urutan naik / ascending).
      *
      * @return array{0: string, 1: string}
      */
@@ -164,7 +165,7 @@ class CourierController extends Controller
     }
 
     /**
-     * Resolve the number of items per page, clamped to a sane range.
+     * Tentukan jumlah data per halaman, dibatesin biar nggak kelamaan.
      */
     private function resolvePerPage(Request $request): int
     {

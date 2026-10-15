@@ -12,7 +12,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 class CourierResource extends JsonResource
 {
     /**
-     * Transform the resource into an array.
+     * Ubah data kurir jadi array buat dikirim sebagai JSON.
      *
      * @return array<string, mixed>
      */

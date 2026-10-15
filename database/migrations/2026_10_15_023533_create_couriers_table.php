@@ -7,26 +7,26 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     * Run the migrations.
+     * Jalanin migration (bikin tabel).
      */
     public function up(): void
     {
         Schema::create('couriers', function (Blueprint $table) {
             $table->id();
 
-            // Identity
+            // Identitas kurir
             $table->string('name');
             $table->string('email')->unique();
             $table->string('phone', 32)->nullable();
 
-            // Operational details
-            $table->unsignedTinyInteger('level')->default(1); // Kurir level: 1-5
+            // Data operasional
+            $table->unsignedTinyInteger('level')->default(1); // level kurir: 1-5
             $table->string('vehicle_type', 32)->nullable();   // motorcycle, car, van, truck
             $table->string('vehicle_plate_number', 32)->nullable();
             $table->string('city', 128)->nullable();
             $table->text('address')->nullable();
 
-            // Lifecycle
+            // Status keaktifan
             $table->string('status', 32)->default('active');  // active, inactive, suspended
             $table->date('registered_at')->nullable();        // tanggal didaftarkan
 
@@ -34,7 +34,7 @@ return new class extends Migration
 
             $table->timestamps();
 
-            // Indexes for common query / sort paths
+            // Index biar query & sorting yang sering dipake jadi lebih cepat
             $table->index('name');
             $table->index('level');
             $table->index('status');
@@ -43,7 +43,7 @@ return new class extends Migration
     }
 
     /**
-     * Reverse the migrations.
+     * Balikin migration (hapus tabelnya).
      */
     public function down(): void
     {

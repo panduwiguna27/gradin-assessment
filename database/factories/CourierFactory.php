@@ -13,14 +13,14 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 class CourierFactory extends Factory
 {
     /**
-     * The name of the factory's corresponding model.
+     * Model yang jadi tuan rumah factory ini.
      *
      * @var class-string<Courier>
      */
     protected $model = Courier::class;
 
     /**
-     * Define the model's default state.
+     * Data default yang dibikin tiap kali factory dipanggil.
      *
      * @return array<string, mixed>
      */
@@ -44,7 +44,7 @@ class CourierFactory extends Factory
     }
 
     /**
-     * Indicate that the courier has a specific level.
+     * Paksa kurir yang dibikin punya level tertentu.
      */
     public function level(int $level): static
     {

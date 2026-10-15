@@ -3,7 +3,7 @@
 namespace App\Enums;
 
 /**
- * Lifecycle status of a courier.
+ * Status aktif/tidaknya kurir.
  */
 enum CourierStatus: string
 {
@@ -12,7 +12,7 @@ enum CourierStatus: string
     case Suspended = 'suspended';
 
     /**
-     * Human readable label for the status.
+     * Label biar enak dibaca manusia buat tiap status.
      */
     public function label(): string
     {
@@ -24,7 +24,7 @@ enum CourierStatus: string
     }
 
     /**
-     * All values as a plain array (handy for validation rules).
+     * Semua nilai dalam bentuk array biasa (buat dipake di aturan validasi).
      *
      * @return array<int, string>
      */

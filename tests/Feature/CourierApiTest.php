@@ -13,7 +13,7 @@ class CourierApiTest extends TestCase
     use RefreshDatabase;
 
     /**
-     * Build a valid payload for the store/update endpoints.
+     * Bikin data contoh yang valid buat endpoint simpan/update.
      *
      * @return array<string, mixed>
      */
@@ -102,7 +102,7 @@ class CourierApiTest extends TestCase
 
         $names = collect($response->json('data'))->pluck('name');
 
-        // Ascending by default -> oldest registered first.
+        // Ascending sebagai default -> yang paling lama didaftar duluan.
         $this->assertSame(['Older', 'Newer'], $names->all());
     }
 
@@ -139,8 +139,8 @@ class CourierApiTest extends TestCase
         Courier::factory()->create(['name' => 'Budiono Hadi Agung']);
         Courier::factory()->create(['name' => 'Siti Rahayu']);
 
-        // "budi agung" should match "Budiono Hadi Agung" even though the
-        // tokens are not adjacent in the name.
+        // "budi agung" harusnya cocok ke "Budiono Hadi Agung" walaupun dua
+        // katanya nggak nyambung langsung di nama.
         $response = $this->getJson('/api/couriers?search=budi+agung');
 
         $response->assertOk();
@@ -156,7 +156,7 @@ class CourierApiTest extends TestCase
         Courier::factory()->create(['name' => 'Budiono Hadi Agung']);
         Courier::factory()->create(['name' => 'Agus Setiawan']);
 
-        // Both tokens must be present -> only "Budiono Hadi Agung" qualifies.
+        // Dua-duanya harus ada -> cuma "Budiono Hadi Agung" yang lolos.
         $response = $this->getJson('/api/couriers?search=budi+agung');
 
         $response->assertOk()
@@ -195,7 +195,7 @@ class CourierApiTest extends TestCase
     {
         Courier::factory()->count(2)->level(2)->create();
 
-        // Levels 9 and 99 are out of the supported range and are ignored.
+        // Level 9 dan 99 di luar rentang yang didukung, jadi diabaikan.
         $response = $this->getJson('/api/couriers?level=2,9,99');
 
         $response->assertOk()
@@ -370,7 +370,7 @@ class CourierApiTest extends TestCase
     {
         $courier = Courier::factory()->create(['email' => 'same@example.com']);
 
-        // Updating the record while keeping the same email must be allowed.
+        // Ngupdate data tapi emailnya tetap sama harusnya tetap boleh.
         $this->putJson("/api/couriers/{$courier->id}", $this->validPayload(['email' => 'same@example.com']))
             ->assertOk();
 

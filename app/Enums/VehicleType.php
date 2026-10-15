@@ -3,7 +3,7 @@
 namespace App\Enums;
 
 /**
- * Supported courier vehicle types used across the application.
+ * Jenis kendaraan yang bisa dipake kurir.
  */
 enum VehicleType: string
 {
@@ -13,7 +13,7 @@ enum VehicleType: string
     case Truck = 'truck';
 
     /**
-     * Human readable label for the vehicle type.
+     * Label biar enak dibaca manusia buat tiap jenis kendaraan.
      */
     public function label(): string
     {
@@ -26,7 +26,7 @@ enum VehicleType: string
     }
 
     /**
-     * All values as a plain array (handy for validation rules).
+     * Semua nilai dalam bentuk array biasa (buat dipake di aturan validasi).
      *
      * @return array<int, string>
      */

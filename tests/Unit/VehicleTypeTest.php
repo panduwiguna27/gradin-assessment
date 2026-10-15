@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 class VehicleTypeTest extends TestCase
 {
     /**
-     * The values() helper should return every case value in definition order.
+     * Helper values() harusnya balikin semua nilai case sesuai urutan bikinnya.
      */
     public function test_values_returns_all_case_values(): void
     {
@@ -19,7 +19,7 @@ class VehicleTypeTest extends TestCase
     }
 
     /**
-     * Every case must expose a human readable label.
+     * Tiap case harus punya label yang enak dibaca.
      */
     public function test_labels_are_correct_for_each_case(): void
     {
@@ -30,7 +30,7 @@ class VehicleTypeTest extends TestCase
     }
 
     /**
-     * The enum should only contain the four expected cases.
+     * Enum-nya harusnya cuma punya empat case.
      */
     public function test_it_declares_the_expected_number_of_cases(): void
     {

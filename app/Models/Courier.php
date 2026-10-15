@@ -15,14 +15,14 @@ class Courier extends Model
     use HasFactory;
 
     /**
-     * The lowest and highest courier level allowed.
+     * Batas level kurir yang boleh dipake, dari paling rendah sampai paling tinggi.
      */
     public const LEVEL_MIN = 1;
 
     public const LEVEL_MAX = 5;
 
     /**
-     * The attributes that are mass assignable.
+     * Kolom yang boleh diisi bareng-bareng (mass assignment).
      *
      * @var list<string>
      */
@@ -41,7 +41,7 @@ class Courier extends Model
     ];
 
     /**
-     * The attributes that should be cast to native types.
+     * Kolom yang perlu diubah/dibaca otomatis ke tipe aslinya (casting).
      *
      * @return array<string, string>
      */
@@ -56,7 +56,7 @@ class Courier extends Model
     }
 
     /**
-     * Scope a query to only couriers whose level is within the given list.
+     * Scope buat nyaring kurir yang level-nya ada di daftar yang diminta.
      *
      * @param  array<int, int>  $levels
      */

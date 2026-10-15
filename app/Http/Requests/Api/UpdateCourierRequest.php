@@ -11,7 +11,7 @@ use Illuminate\Validation\Rule;
 class UpdateCourierRequest extends StoreCourierRequest
 {
     /**
-     * Determine if the user is authorized to make this request.
+     * Cek apakah user boleh ngirim request ini.
      */
     public function authorize(): bool
     {
@@ -19,10 +19,10 @@ class UpdateCourierRequest extends StoreCourierRequest
     }
 
     /**
-     * Get the validation rules that apply to the request.
+     * Aturan validasi yang dipake buat request ini.
      *
-     * The rules mirror the store request, except the unique constraints
-     * ignore the record currently being updated.
+     * Aturannya mirip kayak waktu simpan data baru, bedanya aturan "unik"
+     * (email & plat) nggak ngitung kurir yang lagi diupdate ini.
      *
      * @return array<string, ValidationRule|array<mixed>|string>
      */
